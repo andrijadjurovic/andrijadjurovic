@@ -175,7 +175,7 @@ Class of 2028
 ## 🌐 Connect
 
 - **LinkedIn:** [Andrija Djurovic](YOUR_LINKEDIN_URL)
-- **Project Earth:** [Project Earth](https://projectearth.global/)
+- **Project Earth:** [EcoMont - My Project Earth Journey](https://projectearth.global/news/ecomont-my-project-earth-journey/)
 - **Email:** djurovicandrija21@gmail.com
 
 ---
