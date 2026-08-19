@@ -1,4 +1,4 @@
-# Andrija Djurovic
+# Andrija Đurovic
 
 **Student Developer & Young Innovator from Montenegro**
 
