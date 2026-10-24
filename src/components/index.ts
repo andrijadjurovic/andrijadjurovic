@@ -1,0 +1,14 @@
+export { Navigation } from "./Navigation";
+export { HeroSection } from "./HeroSection";
+export { RecognitionStrip } from "./RecognitionStrip";
+export { AboutSection } from "./AboutSection";
+export { ProjectsSection } from "./ProjectsSection";
+export { ProjectCard } from "./ProjectCard";
+export { AwardsSection } from "./AwardsSection";
+export { ExperienceSection } from "./ExperienceSection";
+export { SkillsSection } from "./SkillsSection";
+export { MediaSection } from "./MediaSection";
+export { InternationalSection } from "./InternationalSection";
+export { BeyondTechnologySection } from "./BeyondTechnologySection";
+export { ContactSection } from "./ContactSection";
+export { Footer } from "./Footer";
