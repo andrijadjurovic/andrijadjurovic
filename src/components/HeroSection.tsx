@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export function HeroSection() {
   const impactStats = [
-    { value: "Speaker", label: "@ The Royal Institution" },
+    { value: "1st", label: "InovAkcija" },
     { value: "2nd", label: "Smart City Challenge" },
     { value: "Top 10", label: "global AI finalist" },
     { value: "WSIS", label: "Champion 2026" },

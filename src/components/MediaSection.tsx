@@ -31,7 +31,7 @@ export function MediaSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-6 hover:border-emerald-500/50 transition-colors"
+                className="flex h-full flex-col bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-6 hover:border-emerald-500/50 transition-colors"
               >
                 <div className="flex items-start justify-between gap-4 mb-3">
                   <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-50">
@@ -53,6 +53,17 @@ export function MediaSection() {
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-3">
                     {appearance.date}
                   </p>
+                )}
+                {appearance.link && (
+                  <a
+                    href={appearance.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto pt-6 inline-flex items-center gap-2 text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
+                  >
+                    {appearance.linkLabel ?? "View coverage"}
+                    <span aria-hidden="true">↗</span>
+                  </a>
                 )}
               </motion.div>
             ))}

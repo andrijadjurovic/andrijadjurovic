@@ -1,3 +1,13 @@
+import type { StaticImageData } from "next/image";
+import projectEarthCertificate from "../images/awards/Project_Earth_certificate.jpg";
+import usaiiCertificate from "../images/awards/USAII_certificate.jpg";
+import cernSolvayCertificate from "../images/awards/CERN_Solvay.png";
+import youth4smartWsisCertificate from "../images/awards/Youth4Smart_Cetinje_WSIS.png";
+import smartCityCertificate from "../images/awards/Smart_City_Challenge.jpg";
+import logateCertificate from "../images/awards/Logate_C++_Advanced.jpg";
+import etsAwardCertificate from "../images/awards/ETS_Vaso_Aligrudic_Award.jpg";
+import inovAkcijaCertificate from "../images/awards/InovAkcija certificate.png";
+
 export interface ExperienceItem {
   id: string;
   title: string;
@@ -140,6 +150,16 @@ export const experience: ExperienceItem[] = [
     type: "program",
   },
   {
+    id: "inovakcija-embero-accelerator",
+    title: "InovAkcija Social Entrepreneurship Academy & Grant Accelerator",
+    organization: "InovAkcija / IPC Tehnopolis",
+    role: "Embero Team Member & Accelerator Winner",
+    period: "September–October 2026",
+    description:
+      "Selected for the MASTER programme in September 2026 with Team Embero, then won first place and an initial grant at the accelerator final on September 29. Selected as a spokesperson for a national media campaign and press conference on October 22. Received an invitation to use ADP Zid's R&D Makerspace and manufacturing facilities for advanced sensor and drone prototypes. Initiated planned cooperation with environmental-protection and forestry representatives on integrating Embero into the national wildfire-response framework. The project was recognized by the Acting Director of the Innovation Fund of Montenegro, with a potential pathway to apply for startup funding of up to €35,000.",
+    type: "competition",
+  },
+  {
     id: "masterplan-policy-school",
     title: "MASTERplan Youth Policy School & Aktiviraj PG",
     organization: "MASTERplan / Aktiviraj PG",
@@ -198,15 +218,37 @@ export interface Award {
   category?: string;
   year?: string;
   description?: string;
+  image?: StaticImageData;
+  imageAlt?: string;
 }
 
 export const awards: Award[] = [
   {
     id: "wsis-champion-2026",
-    title: "WSIS Champion Project 2026",
+    title: "Youth4Smart Cetinje — WSIS Champion Project 2026",
     organization: "United Nations / International Telecommunication Union",
-    category: "E-Environment",
+    category: "CetiNET · e-Environment",
     year: "2026",
+    image: youth4smartWsisCertificate,
+    imageAlt: "Youth4Smart Cetinje WSIS Champion Project certificate",
+  },
+  {
+    id: "cern-solvay-certificate",
+    title: "CERN–Solvay Education Programme",
+    organization: "CERN",
+    category: "Certificate of participation · Particle physics modules and knowledge evaluation",
+    year: "2025",
+    image: cernSolvayCertificate,
+    imageAlt: "CERN–Solvay Education Programme certificate",
+  },
+  {
+    id: "project-earth-pitch-certificate",
+    title: "Project Earth — Pitch for the Planet",
+    organization: "The Royal Institution, London",
+    category: "Certificate of successful pitch presentation",
+    year: "2026",
+    image: projectEarthCertificate,
+    imageAlt: "Project Earth Pitch for the Planet certificate",
   },
   {
     id: "smart-city-challenge",
@@ -214,6 +256,8 @@ export const awards: Award[] = [
     organization: "National Competition",
     category: "National Runner-Up — 2nd Place",
     year: "2026",
+    image: smartCityCertificate,
+    imageAlt: "Smart City Challenge certificate",
   },
   {
     id: "usaii-hackathon",
@@ -221,20 +265,8 @@ export const awards: Award[] = [
     organization: "USAII",
     category: "Global Top 10 Finalist",
     year: "2026",
-  },
-  {
-    id: "olympiad-knowledge",
-    title: "Olympiad of Knowledge",
-    organization: "National",
-    category: "Mathematics — Top 11 nationally",
-    year: "2024–2025",
-  },
-  {
-    id: "math-kangaroo",
-    title: "Math Kangaroo",
-    organization: "International Mathematics Competition",
-    category: "Top 13 in Montenegro",
-    year: "2024–2025",
+    image: usaiiCertificate,
+    imageAlt: "USAII Global AI Hackathon certificate",
   },
   {
     id: "logate-scholarships",
@@ -242,13 +274,8 @@ export const awards: Award[] = [
     organization: "Logate Institute",
     category: "C++, Advanced C++, JavaScript",
     year: "2024–2025",
-  },
-  {
-    id: "top-13-students",
-    title: "Top 13 Students",
-    organization: "ETŠ 'Vaso Aligrudić'",
-    category: "Academic Excellence",
-    year: "2026",
+    image: logateCertificate,
+    imageAlt: "Logate Institute scholarships certificate",
   },
   {
     id: "special-prize",
@@ -256,6 +283,17 @@ export const awards: Award[] = [
     organization: "ETŠ 'Vaso Aligrudić'",
     category: "Unanimously awarded institutional distinction; selected among the school's Top 13 students",
     year: "2026",
+    image: etsAwardCertificate,
+    imageAlt: "ETŠ Vaso Aligrudić special award certificate",
+  },
+  {
+    id: "inovakcija-accelerator-first-place",
+    title: "InovAkcija Accelerator — First Place",
+    organization: "InovAkcija / IPC Tehnopolis",
+    category: "Team Embero · Initial grant awarded",
+    year: "2026",
+    image: inovAkcijaCertificate,
+    imageAlt: "InovAkcija accelerator certificate",
   },
 ];
 
@@ -266,22 +304,27 @@ export interface MediaAppearance {
   topic: string;
   date?: string;
   link?: string;
+  linkLabel?: string;
   status: "published" | "coming-soon";
 }
 
 export const mediaAppearances: MediaAppearance[] = [
   {
     id: "inovakcija-podcast",
-    title: "InovAkcija — od ideje do inovacije",
-    organization: "MASTER — Mreža za evropske politike",
-    topic: "Young Innovators & Civic Technology",
-    status: "coming-soon",
+    title: "InovAkcija National Media Campaign",
+    organization: "InovAkcija / IPC Tehnopolis",
+    topic: "Selected as an Embero spokesperson for the national media campaign and press conference on October 22, 2026",
+    link: "https://www.youtube.com/watch?v=igNP0GPUKmE&t=124s",
+    linkLabel: "Watch on YouTube",
+    status: "published",
   },
   {
     id: "rtcg-feature",
     title: "RTCG Feature",
     organization: "Radio Televizija Crne Gore",
     topic: "Young Innovators in Montenegro",
+    link: "https://www.facebook.com/share/v/1D1ENodGAR/",
+    linkLabel: "Watch on Facebook",
     status: "published",
   },
   {
@@ -289,6 +332,8 @@ export const mediaAppearances: MediaAppearance[] = [
     title: "E Televizija",
     organization: "E Televizija Montenegro",
     topic: "Technology & Youth Innovation",
+    link: "https://etv.me/drustvo/durovic-tehnolosko-znanje-mladih-mnogo-se-vise-cijeni-u-drzavama-koje-imaju-razvijen-naucni-sistem",
+    linkLabel: "Read the article",
     status: "published",
   },
 ];
