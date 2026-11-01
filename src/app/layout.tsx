@@ -14,7 +14,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://andrijadjurovic.com"),
+  metadataBase: new URL(siteConfig.url),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default: `${siteConfig.name} — ${siteConfig.title}`,
     template: `%s | ${siteConfig.name}`,
@@ -37,15 +40,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://andrijadjurovic.com",
+    url: siteConfig.url,
     siteName: siteConfig.name,
     title: `${siteConfig.name} — ${siteConfig.title}`,
     description: siteConfig.description,
     images: [
       {
-        url: "https://andrijadjurovic.com/og-image.png",
-        width: 1200,
-        height: 630,
+        url: "/images/andrija_slika.jpg",
         alt: siteConfig.name,
       },
     ],
@@ -54,8 +55,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} — ${siteConfig.title}`,
     description: siteConfig.description,
-    images: ["https://andrijadjurovic.com/og-image.png"],
-    creator: "@andrijadjurovic",
+    images: ["/images/andrija_slika.jpg"],
   },
   robots: {
     index: true,
@@ -68,9 +68,9 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
 export default function RootLayout({
@@ -94,26 +94,61 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Person",
-              name: siteConfig.name,
-              alternateName: siteConfig.nameAlternate,
-              url: "https://andrijadjurovic.com",
-              jobTitle: siteConfig.title,
-              birthPlace: {
-                "@type": "Place",
-                name: siteConfig.location,
-              },
-              homeLocation: {
-                "@type": "Place",
-                name: siteConfig.location,
-              },
-              email: `mailto:${siteConfig.email}`,
-              sameAs: [
-                siteConfig.github,
-                siteConfig.linkedin,
-                siteConfig.projectEarth,
+              "@graph": [
+                {
+                  "@type": "WebSite",
+                  "@id": `${siteConfig.url}/#website`,
+                  url: `${siteConfig.url}/`,
+                  name: `${siteConfig.name} — Portfolio`,
+                  inLanguage: "en",
+                },
+                {
+                  "@type": "ProfilePage",
+                  "@id": `${siteConfig.url}/#profilepage`,
+                  url: `${siteConfig.url}/`,
+                  name: `${siteConfig.name} — ${siteConfig.title}`,
+                  isPartOf: { "@id": `${siteConfig.url}/#website` },
+                  mainEntity: { "@id": `${siteConfig.url}/#person` },
+                },
+                {
+                  "@type": "Person",
+                  "@id": `${siteConfig.url}/#person`,
+                  name: siteConfig.name,
+                  alternateName: [siteConfig.nameAlternate, "Andrija Đurovic"],
+                  url: `${siteConfig.url}/`,
+                  image: `${siteConfig.url}/images/andrija_slika.jpg`,
+                  description: siteConfig.description,
+                  jobTitle: siteConfig.title,
+                  homeLocation: {
+                    "@type": "Place",
+                    name: siteConfig.location,
+                  },
+                  affiliation: {
+                    "@type": "EducationalOrganization",
+                    name: "ETŠ Vaso Aligrudić",
+                    address: {
+                      "@type": "PostalAddress",
+                      addressLocality: "Podgorica",
+                      addressCountry: "ME",
+                    },
+                  },
+                  email: siteConfig.email,
+                  knowsAbout: [
+                    "Software development",
+                    "Civic technology",
+                    "Artificial intelligence",
+                    "Internet of Things",
+                    "Environmental technology",
+                    "Mobile application development",
+                  ],
+                  sameAs: [
+                    siteConfig.github,
+                    siteConfig.linkedin,
+                    siteConfig.projectEarth,
+                  ],
+                },
               ],
-            }),
+            }).replace(/</g, "\\u003c"),
           }}
         />
       </body>

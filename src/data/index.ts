@@ -117,6 +117,7 @@ export const internationalConnections: InternationalConnection[] = [
 ];
 
 export const siteConfig = {
+  url: "https://andrijadjurovic.vercel.app",
   name: "Andrija Đurović",
   nameAlternate: "Andrija Djurovic",
   title: "Student Developer & Young Innovator",

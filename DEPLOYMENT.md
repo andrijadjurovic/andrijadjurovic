@@ -56,15 +56,19 @@ npm start
 # (See your hosting provider's documentation)
 ```
 
-## Environment Variables
+## Canonical URL and Google Search Console
 
-Vercel automatically detects `.env.local` but for production, set variables in Vercel dashboard:
+The canonical site URL is configured in `src/data/index.ts` as
+`siteConfig.url`. It currently uses the live Vercel URL:
+`https://andrijadjurovic.vercel.app`.
 
-**Settings → Environment Variables**
+After purchasing and connecting a custom domain, update `siteConfig.url` to
+that domain. The page metadata, structured data, sitemap, and robots file use
+this URL.
 
-```
-NEXT_PUBLIC_SITE_URL=https://andrijadjurovic.com
-```
+To verify the site in Google Search Console, set the verification token as
+`GOOGLE_SITE_VERIFICATION` in the Vercel project environment variables, then
+redeploy. Do not commit the token to source control.
 
 ## Domain Setup
 

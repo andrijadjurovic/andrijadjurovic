@@ -1,6 +1,8 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { projects } from "@/data/projects";
+import { siteConfig } from "@/data";
 import { Navigation, Footer } from "@/components";
 
 interface ProjectPageProps {
@@ -13,11 +15,28 @@ export async function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: ProjectPageProps) {
-  // For generateMetadata, params is sync in this version
+export async function generateMetadata({
+  params,
+}: ProjectPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const project = projects.find((item) => item.id === id);
+
+  if (!project) {
+    return { title: "Project not found" };
+  }
+
+  const canonical = `/projects/${project.id}`;
+
   return {
-    title: "Project | Andrija Đurović",
-    description: "Project details",
+    title: project.title,
+    description: project.description,
+    alternates: { canonical },
+    openGraph: {
+      type: "website",
+      url: `${siteConfig.url}${canonical}`,
+      title: `${project.title} | ${siteConfig.name}`,
+      description: project.description,
+    },
   };
 }
 
@@ -29,10 +48,27 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
+  const projectStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "@id": `${siteConfig.url}/projects/${project.id}#project`,
+    name: project.title,
+    description: project.description,
+    url: `${siteConfig.url}/projects/${project.id}`,
+    creator: { "@id": `${siteConfig.url}/#person` },
+    keywords: [...project.category, ...project.technology],
+  };
+
   return (
     <div className="flex flex-col w-full min-h-screen">
       <Navigation />
       <main className="flex-1 w-full pt-20">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(projectStructuredData).replace(/</g, "\\u003c"),
+          }}
+        />
         {/* Hero */}
         <section className="w-full py-16 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
